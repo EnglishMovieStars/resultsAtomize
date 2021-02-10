@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { render } from 'react-dom';
+import Score from "./Score";
 
 
 const ResultsAtomize = () => {
@@ -30,23 +31,24 @@ const ResultsAtomize = () => {
     },
   }))(TableRow);
 
-  function createData(name, movie, score, button) {
-    return { name, movie, score, button };
+  function createData(id, name, movie, character, score, button) {
+    return { id, name, movie, score, character, button };
   }
 
+  var buttonpressed = false;
+
   const button =
-    <button> Display </button>
-    
+    <button onClick={(e) => buttonpressed = !buttonpressed}
+    > Display </button>
+
 
 
 
   const rows = [
-    createData('Eli Kopter', 'Lion King Scene 1', 95, button),
-    createData('Eli Kopter', 'The Lion, The Witch and The Wardrobe Scene 2', 100, button),
-    createData('Avi Ron', 'Lion King Scene 1', 85),
-    createData('Avi Ron', 'The Lion, The Witch and The Wardrobe Scene 2', 85, button),
-    createData('Sammy Saviv', 'Lion King Scene 1', 95, button),
-    createData('Sammy Saviv', 'The Lion, The Witch and The Wardrobe Scene 2', 100, button),
+    createData(1,'Einav', 'Lion King The Morning Lesson', 'Simba', 100, button),
+    createData(2,'Einav', 'The Lion, The Witch and The Wardrobe Scene 2', 'Tumnus', 90, button),
+    createData(3,'Hila', 'Lion King The Morning Lesson', 'Mufasa', 100, button),
+    createData(4, 'Hila', 'The Lion, The Witch and The Wardrobe Scene 2', 'Lucy', 85, button),
   ];
 
   const useStyles = makeStyles({
@@ -66,8 +68,8 @@ const ResultsAtomize = () => {
             <TableRow>
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell align="right">Movie&nbsp;</StyledTableCell>
-              <StyledTableCell align="right">Score&nbsp;(g)</StyledTableCell>
-              <StyledTableCell align="right">Open Details&nbsp;(g)</StyledTableCell>
+              <StyledTableCell align="right">Score&nbsp;</StyledTableCell>
+              <StyledTableCell align="right">Open Details&nbsp;</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -84,9 +86,13 @@ const ResultsAtomize = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      {buttonpressed ? (
+     <label>quality score:100; 
+     stress score:100</label>
+      ) : null}
     </div>
   );
-            };
-            render(<ResultsAtomize />, document.getElementById("root"));
+};
+render(<ResultsAtomize />, document.getElementById("root"));
 
 
